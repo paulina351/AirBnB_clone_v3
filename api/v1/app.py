@@ -12,6 +12,7 @@ cors = CORS(app, resources={r'/*': {'origins': '0.0.0.0'}})
 from api.v1.views import app_views
 app.register_blueprint(app_views)
 
+
 @app.teardown_appcontext
 def teardown_appcontext(exception):
     """an app that handles and calls"""
@@ -23,7 +24,6 @@ def teardown_appcontext(exception):
 def errorhandler(error):
     """404 error handler"""
     return make_response(jsonify({'error': 'Not found'}), 404)
-
 
 
 if __name__ == '__main__':
