@@ -31,7 +31,7 @@ def getReviewsInPlace(place_id=None):
 
 
 @app_views.route('/reviews/<review_id>',
-                 methods=['GET']
+                 methods=['GET'],
                  strict_slashes=False)
 def getReviewById(review_id=None):
     """gets review by id"""

@@ -8,7 +8,7 @@ from models.state import State
 from models.city import City
 
 
-!app_views.route('/cities/<city_id>', methods=['GET'], strict_slashes=False)
+app_views.route('/cities/<city_id>', methods=['GET'], strict_slashes=False)
 def getCity(City_id=None):
     """get a city with the id"""
     if city_id is None:

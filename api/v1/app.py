@@ -3,17 +3,14 @@
 
 
 from flask import Flask, make_response, jsonify
-app = Flask(__name__)
-
-from models import Storage
-from api.vi.views import app_views
+from models import storage
 from flask_cors import CORS
 import os
 
-
-app.register_blueprint(app_views)
+app = Flask(__name__)
 cors = CORS(app, resources={r'/*': {'origins': '0.0.0.0'}})
-
+from api.v1.views import app_views
+app.register_blueprint(app_views)
 
 @app.teardown_appcontext
 def teardown_appcontext(exception):
@@ -21,10 +18,12 @@ def teardown_appcontext(exception):
     if storage is not None:
         storage.close()
 
+
 @app.errorhandler(404)
 def errorhandler(error):
     """404 error handler"""
     return make_response(jsonify({'error': 'Not found'}), 404)
+
 
 
 if __name__ == '__main__':

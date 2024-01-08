@@ -17,7 +17,7 @@ def getAmenitiesInPlace(place_id=None):
     if place_id is None:
         abort(404)
     pl = storage.get(Place, place_id)
-    if pl ids None:
+    if pl is None:
         abort(404)
 
     res = []
