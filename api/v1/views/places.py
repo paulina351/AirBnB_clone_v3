@@ -6,13 +6,13 @@ from flask import jsonify, abort, request, make_response
 from models import storage, storage_t
 from models.place import Place
 from models.state import State
-from models.city import  City
+from models.city import City
 from models.user import User
 
 
-app_views.route('/cities/<city_id>/places',
-                methods=['GET'],
-                strict_slashes=False)
+@app_views.route('/cities/<city_id>/places',
+                 methods=['GET'],
+                 strict_slashes=False)
 def getPlacesInCity(city_id=None):
     """get all places in a city"""
     if city_id is None:
@@ -57,9 +57,9 @@ def deletePlace(place_id=None):
         abort(404)
 
 
-app_views.route('/cities/<city_id>/places',
-                methods=['POST'],
-                strict_slashes=False)
+@app_views.route('/cities/<city_id>/places',
+                 methods=['POST'],
+                 strict_slashes=False)
 def postPlace(city_id):
     """Posts a new place"""
     if city_id is None:
@@ -94,10 +94,10 @@ def placesSearch():
         abort(400, 'Not a JSON')
     keys = body.keys()
     if len(body) <= 0\
-        or (('states' not in keys or len(body['states']) <= 0) and
-        ('cities' not in keys or len(body['cities']) <= 0)):
+       or (('states' not in keys or len(body['states']) <= 0) and
+       ('cities' not in keys or len(body['cities']) <= 0)):
         if 'amenities' not in keys:
-            places = storage.all(Place).values()
+            places in storage.all(Place).values()
             dcts = [pl.to_dict() for pl in places]
             if storage_t == 'db':
                 for dct in dcts:
@@ -116,7 +116,7 @@ def placesSearch():
                     if amenity_id not in amens_ids:
                         unwanted.append(place.id)
                         break
-            places = list(filter(lambda x: x.id not in unwanted, places))
+            place = list(filter(lambda x: x.id not in unwanted, places))
             dcts = [pl.to_dict() for pl in places]
             if storage_t == 'db':
                 for dct in dcts:
@@ -126,7 +126,7 @@ def placesSearch():
     places = storage.all(Place).values()
     wanted_places = []
     cities = {}
-    if 'cities' in keys:
+    if 'cities' n keys:
         for cityId in body['cities']:
             cities[cityId] = cityId
     if 'states' in keys:
