@@ -17,7 +17,7 @@ def getUserById(user_id=None):
         users = storage.all(User)
         return jsonify([user.to_dict() for user in users.values()])
 
-    user = stoage.get(User, user_id)
+    user = storage.get(User, user_id)
     if user is None:
         abort(404)
     return jsonify(user.to_dict())
