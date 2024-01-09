@@ -27,7 +27,8 @@ def getStates(state_id=None):
         return jsonify(res.to_dict())
 
 
-@app_views.route('/states/<state_id>', methods=['DELETE'], strict_slashes=False)
+@app_views.route('/states/<state_id>', methods=['DELETE'],
+                 strict_slashes=False)
 def deleteState(state_id=None):
     """deletes a state"""
     if state_id is not None:
