@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """A file that import app.views from api.v1.views and
-   a file that creates a route on the object app_views
+a file that creates a route on the object app_views
+this modules is part of Api code
 """
 
 
